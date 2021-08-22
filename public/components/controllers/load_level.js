@@ -47,6 +47,8 @@ Crafty.c("LoadLevel", {
 		player.posx = spawnpoint.x, player.posy = spawnpoint.y;
 		isos.place(player, player.posx, player.posy, 1);
 
+		socket.emit('player_location', {playerx:player.posx,playery: player.posy});
+	//socket.emit('player location', input.value);
 		var playerNotification = Crafty.e("PlayerNotification").attr({x: player.x-150, y: player.y-250});
 		playerNotification.messagesReceived = all_messages;
 		player.attach(playerNotification);

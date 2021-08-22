@@ -1,8 +1,22 @@
+var socket;
+
+function create_UUID(){
+    var dt = new Date().getTime();
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = (dt + Math.random()*16)%16 | 0;
+        dt = Math.floor(dt/16);
+        return (c=='x' ? r :(r&0x3|0x8)).toString(16);
+    });
+    return uuid;
+}
+
 Crafty.defineScene("Game", function() {
 	var musicIcon = Crafty.e("MusicIcon")
 		.attr({x: GAME_MUSIC_BUTTON_XPOS, y: GAME_MUSIC_BUTTON_YPOS, w: GAME_MUSIC_BUTTON_WIDTH, h: GAME_MUSIC_BUTTON_HEIGHT})
 		.fixedPosition(GAME_MUSIC_BUTTON_XPOS, GAME_MUSIC_BUTTON_YPOS)
 		.initClick(GAME_MUSIC_BUTTON_XPOS, GAME_MUSIC_BUTTON_YPOS, GAME_MUSIC_BUTTON_WIDTH, GAME_MUSIC_BUTTON_HEIGHT)
+
+	socket = io();
 
 	cat = Crafty.e("item_cat")
 		.attr({x: GAME_MUSIC_BUTTON_XPOS + 100, y: GAME_MUSIC_BUTTON_YPOS, w: PROPS_WIDTH * 2, h: PROPS_HEIGHT * 2})
@@ -17,7 +31,7 @@ Crafty.defineScene("Game", function() {
 		.fixedPosition(GAME_MUSIC_BUTTON_XPOS + 320, GAME_MUSIC_BUTTON_YPOS - 10)
 
 	// var player = Crafty.e('Player');
-	// makeCameraTrackEntity(player, 75);
+	// makeCameraTrackEntity(plaeygr, 75);
 	// Crafty.viewport.scale(0.4);
 
 	map = Crafty.e("LevelGenerator").generate_levels();

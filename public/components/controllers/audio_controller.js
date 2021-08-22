@@ -11,7 +11,7 @@ Crafty.c("AudioController", {
     },
 
     playTrack : function(trackName, timesToPlay=1, trackVolume=1.0) {
-        Crafty.audio.play(trackName, timesToPlay,trackVolume);
+        ///Crafty.audio.play(trackName, timesToPlay,trackVolume);
     },
 
     pauseTrack : function(trackName, timeToPause=0) {

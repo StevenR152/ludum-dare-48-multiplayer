@@ -214,6 +214,7 @@ Crafty.c("Player", {
       // if we haven't returned already, we must be able to move there.
       this.posx += e.x;
       this.posy += e.y;
+      socket.emit('player_location', {playerx:this.posx,playery: this.posy});
 			var footstep_sound = Math.floor(Math.random()*footstep_sounds.length);
 			var step = footstep_sounds[footstep_sound];
 			audioController.playTrack(step, 1, 0.1);
